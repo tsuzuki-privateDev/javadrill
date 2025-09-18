@@ -17,7 +17,7 @@ public class ProductUtil {
         }
 
         if (!found) {
-            System.out.println("該当商品無し" );
+            System.out.println("該当商品なし" );
         }
     }
 
@@ -45,6 +45,13 @@ public class ProductUtil {
 
         if (!found) {
             System.out.println("該当商品なし");
+        }
+    }
+
+    public static void printStockList(ArrayList<Product> products) {
+        for (int i = 0; i < products.size(); i++) {
+            Product p = products.get(i);
+            System.out.println(p.getName() + "(在庫: " + p.getStock() + ")");
         }
     }
 }
