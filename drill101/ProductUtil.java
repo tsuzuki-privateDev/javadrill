@@ -20,4 +20,13 @@ public class ProductUtil {
             System.out.println("該当商品無し" );
         }
     }
+
+    public static void printLowStockProducts(ArrayList<Product> products, int threshold) {
+        for (int i = 0; i < products.size(); i++) {
+            Product p = products.get(i);
+            if (p.getStock() < threshold) {
+                System.out.println(p.getName() + "(在庫: " + p.getStock() + ")");
+            }
+        }
+    }
 }
