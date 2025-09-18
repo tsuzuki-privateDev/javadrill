@@ -1,7 +1,5 @@
 package drill101;
 
-import java.util.Arrays;
-
 public class Step02_Tests {
     public static void main(String[] args) {
 
@@ -31,7 +29,7 @@ public class Step02_Tests {
                 break;
             }
         }
-        
+
         if (hasOutOfStock) {
             System.out.println("在庫切れあり");
         } else {
