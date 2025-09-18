@@ -2,12 +2,12 @@ package drill007;
 
 public class Main {
     public static void main(String[] args) {
-        Car c = new Car("普通車", "黒");
+        Student s = new Student(1, "suzuki", 5);
 
-        c.accelerate(20);
-        c.displaySpeed();
+        s.displayGrade();
 
-        c.decelerate(50);
-        c.displaySpeed();
+        s.updateGrade(50);
+
+        s.displayGrade();
     }
 }
