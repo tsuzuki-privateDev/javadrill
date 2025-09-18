@@ -3,8 +3,12 @@ package drill007;
 public class Main {
     public static void main(String[] args) {
         
-        Book bk = new Book("タイトル", "著者", 2025);
+        Calculator calc = new Calculator(10.0, 9.0);
 
-        bk.displayInfo();
+        double resultAdd = calc.add();
+        System.out.println("足し算の結果: " + resultAdd);
+
+        double resultSub = calc.subtract();
+        System.out.println("引き算の結果： " + resultSub);
     }
 }
