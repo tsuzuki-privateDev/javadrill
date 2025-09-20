@@ -1,31 +1,35 @@
 package drill102;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MapUtil {
-    public static void putMember() {
-        Map<Integer, String> memberMap = new HashMap<>();
+    public static void mapUtilMain() {
+        // カテゴリごとに複数の商品を登録するマップ
+        Map<String, List<String>> categoryMap = new HashMap<>();
 
-        memberMap.put(2001, "Sales");
-        memberMap.put(2002, "HR");
-        memberMap.put(2003, "Engineering");   // key[101]がすでにあるので、値が上書きされる
+        addProduct(categoryMap, "Food", "Apple");
+        addProduct(categoryMap, "Food", "Banana");
+        addProduct(categoryMap, "Clothing", "T-shirt");
+        addProduct(categoryMap, "Clothing", "Jeans");
+        addProduct(categoryMap, "Food", "Orange");
 
-        System.out.println("----------------");
-        System.out.println("keySet()を使って出力");
-        System.out.println("----------------");
-        for (Integer key : memberMap.keySet()) {
-            String value = memberMap.get(key);
-            System.out.println(key + ": " + value);
+        for (String category : categoryMap.keySet()) {
+            System.out.println(category);
+            for (String product : categoryMap.get(category)) {
+                System.out.println("- " + product);
+            }
+            System.out.println("---------------");
         }
+    }
 
-        System.out.println("----------------");
-        System.out.println("entrySet()を使って出力");
-        System.out.println("----------------");
-        for (Map.Entry<Integer, String> entry : memberMap.entrySet()) {
-            Integer key = entry.getKey();
-            String value = entry.getValue();
-            System.out.println(key + ": " + value);
+    private static void addProduct(Map<String, List<String>> map, String category, String product) {
+        // カテゴリが既に登録されているかチェックして、なければ値がリストを作成し、putする
+        if (!map.containsKey(category)) {
+            map.put(category, new ArrayList<>());
         }
+        map.get(category).add(product);
     }
 }
