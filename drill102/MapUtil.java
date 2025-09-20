@@ -2,30 +2,23 @@ package drill102;
 
 import java.util.*;
 
-// 要件
-// 2種類のMapを使って出力結果を比較すること（HashMapとTreeMap）
-// 両方とも for 文で中身を出力すること
-// 出力順が異なることを確認すること
-// import java.util.*; で TreeMap を利用できる
-
 public class MapUtil {
-    public static void compareMapOrder() {
-        System.out.println("HashMapでの出力");
-        Map<String, String> hashMap = new HashMap<>();
-        hashMap.put("2023-05-03", "Curry");
-        hashMap.put("2023-05-01", "Sushi");
-        hashMap.put("2023-05-02", "Pasta");
+    public static void findProductIdByName(String product) {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(101,"Apple");
+        map.put(102, "Banana");
+        map.put(103, "Orange");
 
-        for (Map.Entry<String, String> entry : hashMap.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+        boolean flag = false;
+
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            if (entry.getValue().equals(product)) {
+                System.out.println("商品ID: " + entry.getKey());
+                flag = true;
+                break;
+            }
         }
 
-        System.out.println("---------------");
-        System.out.println("TreeMapでの出力");
-        Map<String, String> treeMap = new TreeMap<>(hashMap);
-
-        for (Map.Entry<String, String> entry : treeMap.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-        }
+        if (!flag) System.out.println("見つかりませんでした。");
     }
 }
