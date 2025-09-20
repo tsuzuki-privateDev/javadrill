@@ -1,35 +1,31 @@
 package drill102;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+// 要件
+// 2種類のMapを使って出力結果を比較すること（HashMapとTreeMap）
+// 両方とも for 文で中身を出力すること
+// 出力順が異なることを確認すること
+// import java.util.*; で TreeMap を利用できる
 
 public class MapUtil {
-    public static void mapUtilMain() {
-        // カテゴリごとに複数の商品を登録するマップ
-        Map<String, List<String>> categoryMap = new HashMap<>();
+    public static void compareMapOrder() {
+        System.out.println("HashMapでの出力");
+        Map<String, String> hashMap = new HashMap<>();
+        hashMap.put("2023-05-03", "Curry");
+        hashMap.put("2023-05-01", "Sushi");
+        hashMap.put("2023-05-02", "Pasta");
 
-        addProduct(categoryMap, "Food", "Apple");
-        addProduct(categoryMap, "Food", "Banana");
-        addProduct(categoryMap, "Clothing", "T-shirt");
-        addProduct(categoryMap, "Clothing", "Jeans");
-        addProduct(categoryMap, "Food", "Orange");
-
-        for (String category : categoryMap.keySet()) {
-            System.out.println(category);
-            for (String product : categoryMap.get(category)) {
-                System.out.println("- " + product);
-            }
-            System.out.println("---------------");
+        for (Map.Entry<String, String> entry : hashMap.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
         }
-    }
 
-    private static void addProduct(Map<String, List<String>> map, String category, String product) {
-        // カテゴリが既に登録されているかチェックして、なければ値がリストを作成し、putする
-        if (!map.containsKey(category)) {
-            map.put(category, new ArrayList<>());
+        System.out.println("---------------");
+        System.out.println("TreeMapでの出力");
+        Map<String, String> treeMap = new TreeMap<>(hashMap);
+
+        for (Map.Entry<String, String> entry : treeMap.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
         }
-        map.get(category).add(product);
     }
 }
