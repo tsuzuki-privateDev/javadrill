@@ -1,31 +1,34 @@
 package drill102;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class MapUtil {
-    public static void putMember() {
-        Map<Integer, String> memberMap = new HashMap<>();
+    public static void printStoreInventory() {
+        Map<String, Map<String, Integer>> storeInventory = new HashMap<>();
 
-        memberMap.put(2001, "Sales");
-        memberMap.put(2002, "HR");
-        memberMap.put(2003, "Engineering");   // key[101]がすでにあるので、値が上書きされる
+        // --- データ登録（Tokyo店） ---
+        addStock(storeInventory, "Tokyo", "Apple", 10);
+        addStock(storeInventory, "Tokyo", "Banana", 5);
 
-        System.out.println("----------------");
-        System.out.println("keySet()を使って出力");
-        System.out.println("----------------");
-        for (Integer key : memberMap.keySet()) {
-            String value = memberMap.get(key);
-            System.out.println(key + ": " + value);
+        // --- データ登録（Osaka店） ---
+        addStock(storeInventory, "Osaka", "Apple", 7);
+        addStock(storeInventory, "Osaka", "Orange", 3);
+
+        // --- 出力 ---
+        for (String store : storeInventory.keySet()) {
+            System.out.println(store + ": ");
+            Map<String, Integer> products = new HashMap<>(storeInventory.get(store));
+            for (Map.Entry<String, Integer> entry : products.entrySet()) {
+                System.out.println(" " + entry.getKey() + " → " + entry.getValue());
+            }
+        }
+    }
+
+    private static void addStock(Map<String, Map<String, Integer>> inventory, String store, String product, int stock) {
+        if (!inventory.containsKey(store)) {
+            inventory.put(store, new HashMap<>()); 
         }
 
-        System.out.println("----------------");
-        System.out.println("entrySet()を使って出力");
-        System.out.println("----------------");
-        for (Map.Entry<Integer, String> entry : memberMap.entrySet()) {
-            Integer key = entry.getKey();
-            String value = entry.getValue();
-            System.out.println(key + ": " + value);
-        }
+        inventory.get(store).put(product, stock);
     }
 }
